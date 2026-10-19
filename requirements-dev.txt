@@ -1,0 +1,3 @@
+# Test-only dependencies (not installed in the runtime image).
+pytest>=8
+httpx>=0.27

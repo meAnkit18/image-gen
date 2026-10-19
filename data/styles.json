@@ -1,0 +1,476 @@
+{
+  "Painted Anime": {
+    "template": "zqxjkvbwmppromptplaceholder, art in the style of atey ghailan, painterly anime style at pixiv, art in the style of kantoku, in art style of redjuice/nec\u00f6mi/rella/tiv pixiv collab, your name anime art style, masterpiece digital painting, exquisite lighting and composition, inspired by wlop art style, 8k, sharp, very detailed, high resolution, illustration.\n\nOverall, it's an absolute world-class masterpiece painterly anime-inspired digital art. It's an aesthetically pleasing painterly anime-inspired digital artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Casual Photo": {
+    "template": "zqxjkvbwmppromptplaceholder, art in the style of atey ghailan, painterly anime style at pixiv, art in the style of kantoku, in art style of redjuice/nec\u00f6mi/rella/tiv pixiv collab, your name anime art style, masterpiece digital painting, exquisite lighting and composition, inspired by wlop art style, 8k, sharp, very detailed, high resolution, illustration.\n\nOverall, it's an absolute world-class masterpiece painterly anime-inspired digital art. It's an aesthetically pleasing painterly anime-inspired digital artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Digital Painting": {
+    "template": "zqxjkvbwmppromptplaceholder, breathtaking digital art, trending on artstation, in the style of atey ghailan, in the style of greg rutkowski, in the style of greg tocchini, in the style of james gilleard, 8k, high resolution, best quality.\n\nOverall, it's an absolute world-class masterpiece digital painting. It's an aesthetically pleasing digital painting with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Concept Art": {
+    "template": "zqxjkvbwmppromptplaceholder, concept art, digital art, illustration, inspired by wlop style, 8k, fine details, sharp, very detailed, high resolution, world-class masterpiece.\n\nOverall, it's absolute world-class masterpiece concept art. It's an aesthetically pleasing concept art with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "\ud835\udde1\ud835\uddfc \ud835\ude00\ud835\ude01\ud835\ude06\ud835\uddf9\ud835\uddf2": {
+    "template": "zqxjkvbwmppromptplaceholder",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "3D Disney Character": {
+    "template": "3D cartoon Disney character portrait render. zqxjkvbwmppromptplaceholder, bokeh, 4k, highly detailed, Pixar render, CGI Animation, Disney, cute big circular reflective eyes, dof, cinematic film, Disney realism, subtle details, breathtaking Pixar short, fine details, close up, sharp focus, HDR, Disney-style octane render, incredible composition, superb lighting and detail, zqxjkvbwmppromptplaceholder.\n\nOverall, it's an absolute world-class masterpiece 3D Disney-inspired Character. It's an aesthetically pleasing 3D Disney-inspired piece with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "2D Disney Character": {
+    "template": "2D cartoon Disney character digital art of zqxjkvbwmppromptplaceholder. superb linework, classic 2D Disney style art, inspired in the style of the art styles of Glen Keane and Aaron Blaise, Disney-style character concept with a Disney-style face, trending on artstation, Disney-style version of zqxjkvbwmppromptplaceholder.\n\nOverall, it's an absolute world-class masterpiece 2D Disney-inspired Character. It's an aesthetically pleasing 2D Disney-inspired piece with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Disney Sketch": {
+    "template": "Glen Keane character concept art black and white pencil sketch of zqxjkvbwmppromptplaceholder. rough pencil sketch in the style of Glen Keane, rough pencil sketch, close up, loose Disney-style character concept art sketch, nice sketchy pencil strokes, Disney character design sketch, pencil texture, a concept art pencil sketch of zqxjkvbwmppromptplaceholder, in the style of Glen Keane.\n\nOverall, it's an charmingly aesthetic and well-composed Disney-style sketch.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Concept Sketch": {
+    "template": "black and white technical drawing showcasing a zqxjkvbwmppromptplaceholder, annotation details, world-class masterpiece black and white, pencil strokes, annotated technical concept art sketch, pencil texture.\n\nOverall, it's a charmingly aesthetic and well-composed concept sketch.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Painterly": {
+    "template": "painterly digital painting, zqxjkvbwmppromptplaceholder, digital painting in the style of Ilya Kuvshinov with painterly brush strokes, in the style of Ilya Kuvshinov, world-class painterly masterpiece.\n\nOverall, it's an absolute world-class masterpiece painterly digital painting. It's an aesthetically pleasing painterly digital painting with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Oil Painting": {
+    "template": "breathtaking alla prima oil painting, zqxjkvbwmppromptplaceholder, close up, alla prima style, oil on linen, painterly oil on canvas, painterly style, exquisite composition and lighting, modern painterly masterpiece, in the style of alexi zaitsev, award-winning painterly alla prima oil painting.\n\nOverall, it's an absolute world-class masterpiece oil painting. It's an aesthetically pleasing oil painting with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Oil Painting - Realism": {
+    "template": "breathtaking oil painting, zqxjkvbwmppromptplaceholder, photorealistic oil painting, in the style of charlie bowater, fine details, in the style of wlop, trending on artstation, very detailed.\n\nOverall, it's an absolute world-class masterpiece realism oil painting. It's an aesthetically pleasing realism oil painting with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Oil Painting - Old": {
+    "template": "zqxjkvbwmppromptplaceholder, Oil painting in the style of Jean-Fran\u00e7ois Millet and Gustave Courbet and Jules Breton",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Oil Painting - 70s Pulp": {
+    "template": "1970s vintage pulp art, ultra realistic, fully restored, exquisite lighting and composition, polished, masterpiece, vintage pulp art, in the style of Earle K. Bergey, in the style of Kelly Freas, in the style of Alex Schomburg, in the style of H. J. Ward, glossy pulp art, Amazing Stories, Weird Tales, 8k, high resolution, best quality, hyper-realistic, Mattias Adolfsson style, detailed stylization, zqxjkvbwmppromptplaceholder, ultra realistic, wlop-style, exquisite lighting and composition, polished, world-class masterpiece, digitally enhanced, breathtaking shot, subtle details, superb quality, art in the style of Kuvshinov, Kuvshinov style, detailed stylization.\n\nOverall, it's an absolute world-class masterpiece artwork. It's an aesthetically pleasing restored 1970s vintage pulp art with impeccable attention to detail and impressive composition. It has perfect contrast and color balance. Almost photorealism.",
+    "negativePrompt": ", scratches, faded, washed out, grainy, dirty",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Professional Photo": {
+    "template": "zqxjkvbwmppromptplaceholder, soft focus, depth of field, 8k photo, HDR, professional lighting, taken with Canon EOS R5, DSLR, 75mm lens",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Anime": {
+    "template": "anime art of zqxjkvbwmppromptplaceholder, world-class masterpiece, 4k, best quality, anime art.\n\nOverall, it's an absolute world-class masterpiece anime-inspired artwork. It's an aesthetically pleasing anime art with impeccable attention to detail and beautiful composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Drawn Anime": {
+    "template": "anime-style illustration with perfect clean lines, illustration of zqxjkvbwmppromptplaceholder, anime drawing/art, bold linework, illustration, cel shaded, anime-style digital illustration. It's an anime-inspired 2D-style anime illustration. Aesthetic high-skill, professional anime illustration, which looks like a screencap from an anime series. It has clean line work and a pleasant, appealing drawn aesthetic style. Overall, it's a world-class illustration with flawless line work, perfect composition, and impeccable attention to detail.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Anime Screencap": {
+    "template": "Anime screencap, zqxjkvbwmppromptplaceholder. It's an anime screencap from a popular anime. Beautiful visual quality, remastered, extremely high quality, very aesthetic, high production value, high-skill masterpiece. The image shows impeccable and beautiful composition and contrast. It's an exquisite anime screencap style image.",
+    "negativePrompt": ", faded, washed out, low quality",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Cute Anime": {
+    "template": "adorable, cute, kawaii, zqxjkvbwmppromptplaceholder, cute moe anime character portrait, adorable, featured on pixiv, kawaii mo\u00e9 masterpiece, cuteness overload, very detailed, sooooo adorable.\n\nOverall, it's an absolute world-class masterpiece anime-inspired artwork. It's an aesthetically pleasing anime art with impeccable attention to detail and beautiful composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Soft Anime": {
+    "template": "zqxjkvbwmppromptplaceholder, anime masterpiece with soft lighting, gentle intricate style, highly detailed, pixiv, anime art, 4k, art from your name anime, garden of words style art, high quality.\n\nOverall, it's an absolute world-class masterpiece soft beautiful anime-inspired artwork. It's an aesthetically pleasing, soft, beautiful anime art with impeccable attention to detail and beautiful composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Fantasy Painting": {
+    "template": "zqxjkvbwmppromptplaceholder, d&d, fantasy, highly detailed, digital painting, artstation, sharp focus, fantasy art, illustration, 8k, in the style of greg rutkowski. It's an absolute world-class masterpiece artwork. It's an aesthetically pleasing artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Fantasy Landscape": {
+    "template": "zqxjkvbwmppromptplaceholder, fantasy matte painting, absolute masterpiece, detailed matte painting in the style of andreas rocha and greg rutkowski, in the style of Brothers Hildebrandt, superb composition, vivid fantasy art, breathtaking fantasy masterpiece. It's an absolute world-class masterpiece artwork. It's an aesthetically pleasing artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Fantasy Portrait": {
+    "template": "zqxjkvbwmppromptplaceholder, d&d, fantasy, highly detailed, digital painting, artstation, sharp focus, fantasy art, character art, illustration, 8k, art in the style of artgerm and greg rutkowski. It's an absolute world-class masterpiece artwork. It's an aesthetically pleasing artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Studio Ghibli": {
+    "template": "Studio Ghibli style artwork of zqxjkvbwmppromptplaceholder, Studio Ghibli style art film still, sharp, very detailed, high resolution, inspired by the style of Hayao Miyazaki, anime, film still from Spirited Away. In the style of Kiki Delivery Service, with a similar art style to Princess Mononoke. Aesthetically similar to My Neighbor Totoro's art style.\n\nOverall, it's an absolute world-class masterpiece Studio Ghibli-inspired artwork. It's an aesthetically pleasing classic Studio Ghibli style artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "50s Enamel Sign": {
+    "template": "50s enamel sign of zqxjkvbwmppromptplaceholder, 50s advert enamel sign, masterpiece, authentic vintage enamel sign",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Vintage Comic": {
+    "template": "comic book style art of zqxjkvbwmppromptplaceholder, drawing, in the style of Dave Stevens, in the style of Adam Hughes, 1940's, 1950's, hand-drawn, color, high resolution, best quality, closeup",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Franco-Belgian Comic": {
+    "template": "franco-belgian color comic about zqxjkvbwmppromptplaceholder, bande dessin\u00e9e, franco-belgian comic panel, masterpiece, breathtaking composition, intricate, detailed, best quality",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Tintin Comic": {
+    "template": "color comic panel in the style of Herg\u00e9 about zqxjkvbwmppromptplaceholder, in the style of Herg\u00e9, tintin style, french comic panel, franco-belgian style, masterpiece, high-resolution Herg\u00e9 style",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Medieval": {
+    "template": "medieval illuminated manuscript picture of zqxjkvbwmppromptplaceholder, medieval illuminated manuscript art, masterpiece medieval color illustration, 16th century, 8k high-resolution scan of 16th century illuminated manuscript painting, detailed medieval masterpiece.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Pixel Art": {
+    "template": "zqxjkvbwmppromptplaceholder, best pixel art, neo-geo graphical style, retro nostalgic masterpiece, 128px, 16-bit pixel art , 2D pixel art style, adventure game pixel art, inspired by the art style of hyper light drifter, masterful dithering, superb composition, beautiful palette, exquisite pixel detail",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Furry - Oil": {
+    "template": "zqxjkvbwmppromptplaceholder, crisp vibrant detailed soft painterly digital art, volumetric lighting, natural lighting, realistic lighting, vibrant colors, crisp oil painting, painterly realism, depth of field, subtle soft details, vivid, fresh, striking, in the style of chunie, in the style of darkgem, in the style of honovy, inspired by zaush, inspired by anhes, inspired by puinkey, in the style of caraid, in the style of dagasi, inspired by taranfiddler, in the style of atey ghailan, in the style of MilletGustave, in the style of Curbet, inspired by Charlie Bowater style, lol art.\n\nOverall, it's a world-class painterly masterpiece. It's aesthetically pleasing digitial art with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Furry - Cinematic": {
+    "template": "zqxjkvbwmppromptplaceholder, cinematic shot, dynamic lighting, 75mm, Technicolor, Panavision, cinemascope, sharp focus, fine details, 8k, HDR, realism, realistic, key visual, film still, cinematic color grading, depth of field.\n\nOverall, it's an absolute world-class masterpiece. It's an aesthetically pleasing image with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Furry - Painted": {
+    "template": "anthro zqxjkvbwmppromptplaceholder digital art, masterpiece, 4k, fine details. It's an absolute world-class masterpiece artwork.\n\nOverall, it's an aesthetically pleasing artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Furry - Drawn": {
+    "template": "anthro zqxjkvbwmppromptplaceholder illustration, hand-drawn, bold linework, anthro illustration, cel shaded, 4k, fine details, masterpiece.\n\nOverall, it's an absolute world-class masterpiece artwork. It's an aesthetically pleasing artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Cute Figurine": {
+    "template": "zqxjkvbwmppromptplaceholder, figurine, modern Disney style, octane render, chibi",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "3D Emoji": {
+    "template": "masterpiece zqxjkvbwmppromptplaceholder cartoon 3D emoji concept render, close-up, facing forward, matte finish, 3D emoji render, app icon, simple design, new iOS 18.4 style zqxjkvbwmppromptplaceholder emoji render, simple background, centered, world-class masterpiece work of art, crisp render, sharp focus, charmingly aesthetic design, 4k, soft lighting, masterpiece emoji-style figurine 3D render, pure white background",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Illustration": {
+    "template": "breathtaking illustration of zqxjkvbwmppromptplaceholder, illustration, masterpiece, breathtaking illustration.\n\nOverall, it's an absolute world-class masterpiece illustration. It's an aesthetically pleasing illustration with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Cute Illustration": {
+    "template": "A cute cartoon showing zqxjkvbwmppromptplaceholder, in a soft, cute, minimalist, webcomic-style illustration. Line art is somewhat bold but gentle, with clean lines, and subtle variation. Colors are soft, flat, with gentle pastel tones. No shading except for light inner shadows or simple highlights. The background is plain white or contains a light wash of color with subtle textured style. The overall scene is wholesome and endearing like a page from a Liz Climo comic. Composition is centered with space around the character, evoking authentic warmth through the wholesome, soft, web comic style.\n\nIt's an aesthetically pleasing masterpiece, showing high skill in evoking an authentic and beautifully minimalist style.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Flat Illustration": {
+    "template": "zqxjkvbwmppromptplaceholder, illustration, flat, 2D, vector art, masterpiece, made with adobe illustrator, behance competition winner, trending on dribble, 4k, high resolution, crisp lines.\n\nOverall, it's an absolute world-class masterpiece flat-style illustration. It's an aesthetically pleasing flat-style illustration with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Watercolor": {
+    "template": "zqxjkvbwmppromptplaceholder, (watercolor), high resolution, intricate details, 4k, wallpaper, concept art, watercolor on textured paper.\n\nOverall, it's an absolute world-class masterpiece watercolor artwork. It's an aesthetically pleasing watercolor artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "1990s Photo": {
+    "template": "zqxjkvbwmppromptplaceholder, 90s home video, nostalgic 90s photo, taken with kodak disposable camera",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "1980s Photo": {
+    "template": "famous vintage 80s photo, zqxjkvbwmppromptplaceholder, grainy photograph, 80s photo with film grain, Kodacolor II 80s photo with vignetting, retro, r/OldSchoolCool, 80s photo with wear and tear and minor creasing and scratches, vintage color photo",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "1970s Photo": {
+    "template": "famous vintage 70s photo, zqxjkvbwmppromptplaceholder, grainy photograph, 1970s photo with film grain, 70s photo with vignetting, retro, r/OldSchoolCool, 70s photo, vintage photo",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "1960s Photo": {
+    "template": "famous vintage 60s photo, zqxjkvbwmppromptplaceholder, grainy photograph, 1960s photo with film grain, 60s photo with vignetting, retro, r/OldSchoolCool, 60s photo, vintage photo",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "1950s Photo": {
+    "template": "famous vintage 50s photo, zqxjkvbwmppromptplaceholder, grainy photograph, 1950s photo with film grain, 1950s photo with vignetting, retro, r/OldSchoolCool, 1950s photo, vintage photo",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "1940s Photo": {
+    "template": "famous vintage 1940s photo, zqxjkvbwmppromptplaceholder, grainy photograph, 1940s photo with film grain, 1940s photo with vignetting, retro, r/OldSchoolCool, 1940s photo, vintage photo",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "1930s Photo": {
+    "template": "famous vintage 1930s photo, zqxjkvbwmppromptplaceholder, grainy photograph, 1930s photo with film grain, 1930s photo with vignetting, retro, r/OldSchoolCool, 1930s photo, vintage photo",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "1920s Photo": {
+    "template": "famous vintage 1920s photo, zqxjkvbwmppromptplaceholder, 1920s photo, restored photograph, sepia, historical archive photo",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Vintage Pulp Art": {
+    "template": "1970s vintage pulp art, zqxjkvbwmppromptplaceholder, vintage pulp art, in the style of Earle K. Bergey, in the style of Kelly Freas, in the style of Alex Schomburg, in the style of H. J. Ward, glossy pulp art, Amazing Stories, Weird Tales, 8k, high resolution, best quality",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "50s Infomercial Anime": {
+    "template": "zqxjkvbwmppromptplaceholder, 1950s infomercial style, delicate linework, paprika anime art style, chromatic aberration glow, 2d painted cel animation, soft focus, 2D pixiv 1950s",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "3D Pokemon": {
+    "template": "An incredibly perfect high-quality 3D render of a pokemon creature, zqxjkvbwmppromptplaceholder, 8k render, beautiful pokemon digital art, fakemon, pokemon creature, cryptid, fakemon, masterpiece, soft focus, best quality, high quality. Perfect soft lighting, beautiful composition. It's an impressive CGI image from the upcoming Pokemon Movie \\(2026\\).\n\nOverall, it's an absolute world-class masterpiece 3D-rendered Pokemon-inspired creature. It's an aesthetically pleasing 3D Pokemon-inspired piece with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Painted Pokemon": {
+    "template": "Beautiful, very high-quality painterly digital concept art, zqxjkvbwmppromptplaceholder, 8k digital painting of a pokemon, amazing pokemon creature art in the style of piperdraws, cryptid creations in the style of Piper Thibodeau, in the style of Naoki Saito and Mitsuhiro Arita, incredible composition.\n\nOverall, it's an absolute world-class masterpiece painterly Pokemon-inspired artwork. It's an aesthetically pleasing painterly Pokemon-inspired artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "2D Pokemon": {
+    "template": "zqxjkvbwmppromptplaceholder, pokemon creature concept, superb line art, beautiful colors and composition, 2D art style, beautiful pokemon digital art, fakemon, in the style of Sowsow, pokemon creature, cryptid, fakemon, masterpiece, in the style of Yuu Nishida, 4k. The Pok\u00e9mon-like creature is centered within this anime-style 2D image. It's from the upcoming Pokemon Movie \\(2026\\) which has the classic 2D Pokemon art style.\n\nOverall, it's an absolute world-class masterpiece 2D Pokemon-inspired artwork. It's an aesthetically pleasing 2D Pokemon-inspired artwork with impeccable attention to detail and impressive composition. Clean, perfect linework, impeccable clean 2D anime-inspired art style.",
+    "negativePrompt": ", messy, garbled, confusing, incoherent, unclear",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Vintage Anime": {
+    "template": "zqxjkvbwmppromptplaceholder, 1990s anime, vintage anime, 90's anime style, in the style of hajime sorayama, in the style of greg tocchini, anime masterpiece, pixiv, akira-style art, akira anime art, 4k, high quality.\n\nOverall, it's an absolute world-class masterpiece vintage anime artwork. It's an aesthetically pleasing vintage anime artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Neon Vintage Anime": {
+    "template": "zqxjkvbwmppromptplaceholder, neon vintage anime style, 90's anime style, 1990s anime, hajime sorayama, greg tocchini, neon vintage anime masterpiece, anime art, 4k, high quality.\n\nOverall, it's an absolute world-class masterpiece neon vintage anime artwork. It's an aesthetically pleasing neon vintage anime artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Manga": {
+    "template": "zqxjkvbwmppromptplaceholder, incredible hand-drawn manga, black and white, in the style of Takehiko Inoue, in the style of Katsuhiro Otomo and akira toriyama manga, hand-drawn art in the style of rumiko takahashi and Inio Asano, Ken Akamatsu manga art.\n\nOverall, it's an absolute world-class masterpiece black and white manga-style artwork. It's an aesthetically pleasing black and white manga artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Fantasy World Map": {
+    "template": "beautiful fantasy map of zqxjkvbwmppromptplaceholder, beautiful fantasy map inspired by middle earth and azeroth and discworld and westeros and essos and the witcher world and tamriel and faer\u00fbn and thedas, 4k, beautiful colors, crisp, high-resolution artistic map, topographic 3D terrain, artistic map.\n\nOverall, it's an absolute world-class masterpiece fantasy world map. It's an aesthetically pleasing fantasy world map artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Fantasy City Map": {
+    "template": "an aerial view of a city, TTRPG city map showing the full city, zqxjkvbwmppromptplaceholder, fantasy art, highly-skilled senior environment artist piece, beautiful fantasy map.\n\nOverall, it's an absolute world-class masterpiece fantasy city map. It's an aesthetically pleasing fantasy city map artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Old World Map": {
+    "template": "fantasy world map of zqxjkvbwmppromptplaceholder, fantasy world map, highly detailed digital painting, fantasy art, map illustration, 8k.\n\nOverall, it's an absolute world-class masterpiece old world map. It's an aesthetically pleasing old world style map artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "3D Isometric Icon": {
+    "template": "zqxjkvbwmppromptplaceholder, 3D isometric render of cute zqxjkvbwmppromptplaceholder, 3D app icon, clean isometric design, beautiful design, soft gradient background, soft colors, centered, 3D blender render, masterpiece, best quality, high resolution, 8k octane render, beautiful color scheme, soft smooth lighting, physically based rendering, square image, high polycount",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Flat Style Icon": {
+    "template": "zqxjkvbwmppromptplaceholder, 3D isometric render of cute zqxjkvbwmppromptplaceholder, 3D app icon, clean isometric design, beautiful design, soft gradient background, soft colors, centered, 3D blender render, masterpiece, best quality, high resolution, 8k octane render, beautiful color scheme, soft smooth lighting, physically based rendering, square image, high polycount",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Game Art Icon": {
+    "template": "zqxjkvbwmppromptplaceholder, a concept art icon for league of legends, a digital art logo, illustration, league of legends style icon, inspired by wlop style, 8k, dota 2 style icon, fine details, sharp, very detailed icon, high resolution rpg ability/spell/item icon",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Digital Painting Icon": {
+    "template": "zqxjkvbwmppromptplaceholder, app logo icon, digital art pictogram icon, trending on artstation, app icon in the style of atey ghailan, app icon in the style of greg rutkowski, app icon in the style of greg tocchini, app icon in the style of james gilleard, 8k, high resolution, best quality",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Concept Art Icon": {
+    "template": "zqxjkvbwmppromptplaceholder, a concept art icon, a digital art logo, illustration, league of legends style concept art logo icon, inspired by wlop style, 8k, fine details, sharp, very detailed, high resolution logo icon",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Cute 3D Icon": {
+    "template": "zqxjkvbwmppromptplaceholder, a cute 3D icon of zqxjkvbwmppromptplaceholder, cartoon 3D icon, very cute shape, stylized octane render, 8k, masterpiece, soooo cute, beautiful cute perfection, beautiful soft lighting, soft colors, centered, high resolution, zqxjkvbwmppromptplaceholder, soft gradient background",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Cute 3D Icon \ud835\udde6\ud835\uddf2\ud835\ude01": {
+    "template": "zqxjkvbwmppromptplaceholder, a set of lovely little 3D icons, cute 3D icons, very cute shapes, stylized octane render, 8k, masterpiece, soooo cute, beautiful cute perfection, beautiful soft lighting, soft colors, centered, high resolution, zqxjkvbwmppromptplaceholder, cute icon set",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Crayon Drawing": {
+    "template": "zqxjkvbwmppromptplaceholder, crayon drawing",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Pencil": {
+    "template": "black and white pencil drawing, zqxjkvbwmppromptplaceholder, black and white, breathtaking pencil illustration, highly detailed, 4k, textured paper, pencil texture, sketch",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Tattoo Design": {
+    "template": "amazing tattoo design, zqxjkvbwmppromptplaceholder, breathtaking tattoo design, incredible tattoo design",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Waifu": {
+    "template": "zqxjkvbwmppromptplaceholder, waifu character portrait, 1girl, very high resolution, semi-realistic anime art. Intricate and impressive anime artwork with stunningly beautiful composition and style.\n\nOverall, it's an absolute world-class masterpiece anime artwork. It's an aesthetically pleasing waifu artwork with impeccable attention to detail and impressive composition. It's an aesthetically pleasing character portrait. It's an aesthetically pleasing image. It's an aesthetically pleasing image. It's an aesthetically pleasing image. It's an aesthetically pleasing image.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "YuGiOh Art": {
+    "template": "yugioh card art for zqxjkvbwmppromptplaceholder, art in the style of genzoman, in the style of Akina Fujiwara, in the style of rossdraws, yugioh monster, close up, painterly details, breathtaking art, centered, masterpiece, amazing composition, zqxjkvbwmppromptplaceholder.\n\nOverall, it's an absolute world-class masterpiece \"Yu-Gi-Oh!\"-inspired artwork. It's an aesthetically pleasing Yu-Gi-Oh inspired artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Traditional Japanese": {
+    "template": "yugioh card art for zqxjkvbwmppromptplaceholder, art in the style of genzoman, in the style of Akina Fujiwara, in the style of rossdraws, yugioh monster, close up, painterly details, breathtaking art, centered, masterpiece, amazing composition, zqxjkvbwmppromptplaceholder.\n\nOverall, it's an absolute world-class masterpiece \"Yu-Gi-Oh!\"-inspired artwork. It's an aesthetically pleasing Yu-Gi-Oh inspired artwork with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Claymation": {
+    "template": "zqxjkvbwmppromptplaceholder, claymation, incredible claymation style, kubo and the two strings style art, Missing Link 2019 art style, clay texture, clay animation, stop-motion clay",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Cartoon": {
+    "template": "zqxjkvbwmppromptplaceholder, cartoon-style art, superb linework, nice colors and composition, bold linework, masterpiece, cute art in the style of Dana Terrace, in the style of Rebecca Sugar, in the style of ry-spirit, amazing and wholesome cartoon-style art, cute art style, (trending on artstation)",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Cursed Photo": {
+    "template": "cursed photo of zqxjkvbwmppromptplaceholder, creepy and cursed, absolutely cursed photo, nope nope nope nope, what the actual f, unsettling photo, cursed_thing, cursedimages, no context, cursed image, bad photo, weird photo, very strange, color photo, creepy photo, nightmare fuel",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "MTG Card": {
+    "template": "magic the gathering card, zqxjkvbwmppromptplaceholder, incredible magic the gathering artwork",
+    "negativePrompt": ", low-quality, deformed, blurry, bad art",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Cinematic": {
+    "template": "zqxjkvbwmppromptplaceholder, cinematic shot, dynamic lighting, 75mm, Technicolor, Panavision, cinemascope, sharp focus, fine details, 8k, HDR, realism, realistic, key visual, film still, cinematic color grading, depth of field.\n\nOverall, it's an absolute world-class cinematic masterpiece. It's an aesthetically pleasing cinematic shot with impeccable attention to detail and impressive composition.",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Flat Style Logo": {
+    "template": "beautiful flat-style logo design depicting zqxjkvbwmppromptplaceholder, creative flat-style logo design, trending on dribbble, featured on behance, portfolio piece, minimal flat design, breathtaking graphic design, 8k, high resolution vector logo, plain background, amazingly beautiful logo design, winner of best logo award",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  },
+  "Nihonga Painting": {
+    "template": "japanese nihonga painting about zqxjkvbwmppromptplaceholder, Nihonga, ancient japanese painting, intricate, detailed",
+    "negativePrompt": "",
+    "resolution": "768x768",
+    "guidanceScale": 7
+  }
+}

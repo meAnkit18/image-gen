@@ -1,0 +1,34 @@
+# Render Blueprint - deploy with "New +" -> "Blueprint" and point at this repo.
+#
+# Free tier notes:
+#   * 512 MB RAM / 0.1 CPU. This service is pure HTTP (no headless browser), so
+#     it idles around 100 MB - comfortably inside the limit.
+#   * The instance sleeps after 15 idle minutes and cold-starts in ~60 s. Point
+#     a free uptime monitor at /healthz if you want it warm.
+#   * Only one instance: the key pool lives in process memory.
+services:
+  - type: web
+    name: perchance-image-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      # Render generates a strong secret; clients must send it as X-API-Key.
+      # Delete this block to run the API completely open.
+      - key: API_KEY
+        generateValue: true
+      - key: MAX_COUNT
+        value: "8"
+      - key: KEY_POOL_SIZE
+        value: "3"
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "30"
+      - key: GENERATE_DEADLINE
+        value: "240"
+      - key: DEFAULT_STYLE
+        value: "No style"
+      - key: LOG_LEVEL
+        value: info
