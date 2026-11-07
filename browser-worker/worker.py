@@ -10,6 +10,7 @@ import asyncio
 import base64
 import os
 import time
+import logging
 from contextlib import asynccontextmanager
 from typing import Any
 
@@ -17,6 +18,8 @@ from fastapi import FastAPI, Header, HTTPException
 from fastapi.responses import Response
 from pydantic import BaseModel, Field
 from playwright.async_api import async_playwright
+
+log = logging.getLogger("perchance.worker")
 
 API_KEY = os.environ.get("WORKER_API_KEY", "")
 PORT = int(os.environ.get("PORT", "8080"))
@@ -147,7 +150,7 @@ async def select_controls(frame, style: str, shape: str) -> list[str]:
           });
           const a = pick(styleSel,style);
           const b = pick(shapeSel,shape);
-          const c = pick(countSel,'2');
+          const c = pick(countSel,'1');
           if (a.startsWith('MISS') || b.startsWith('MISS') || c.startsWith('MISS') ||
               a==='NOSEL'||b==='NOSEL'||c==='NOSEL') throw new Error([a,b,c].join(','));
           return [a,b,c];
@@ -195,9 +198,6 @@ async def capture_new_image(baseline: set[str]) -> str | None:
 @app.post("/generate")
 async def generate(body: GenerateBody, x_worker_key: str | None = Header(None, alias="X-Worker-Key")):
     auth(x_worker_key)
-    if generation_lock.locked():
-        raise HTTPException(409, "a generation is already in progress; retry shortly")
-
     async with generation_lock:
         try:
             gen = next(
@@ -219,12 +219,15 @@ async def generate(body: GenerateBody, x_worker_key: str | None = Header(None, a
 
         try:
             controls = await select_controls(gen, body.style, body.shape)
+            log.info("generation controls selected: %s", controls)
             await set_prompt(gen, body.prompt)
             baseline = await gallery_sources()
             button = gen.locator('button:has-text("generate")').first
             await button.click(timeout=15000)
+            log.info("Perchance generate button clicked; waiting up to %ss", GENERATION_TIMEOUT)
             data_url = await capture_new_image(baseline)
             if not data_url:
+                log.error("Perchance produced no new image within %ss", GENERATION_TIMEOUT)
                 raise HTTPException(504, "Perchance did not produce a new image before timeout")
             raw = base64.b64decode(data_url.split(",", 1)[1], validate=True)
             if len(raw) < 1024:
