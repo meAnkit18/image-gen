@@ -73,9 +73,9 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="Perchance Image Generator API",
     version="1.0.0",
-    summary="Free text-to-image generation by driving Perchance over plain HTTP.",
+    summary="Free Perchance text-to-image generation using a browser worker or legacy HTTP backend.",
     description=(
-        "A thin, stateless wrapper around `image-generation.perchance.org`.\n\n"
+        "A thin API gateway for Perchance image generation. When a browser worker is configured, it drives the real Perchance webpage with Playwright and captures the inline generated image.\n\n"
         "* `POST /v1/generate` returns the image bytes directly.\n"
         "* `GET /v1/options` lists every tunable parameter.\n"
         "* `GET /v1/styles` lists all 79 upstream styles.\n"
