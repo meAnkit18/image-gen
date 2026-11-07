@@ -33,6 +33,53 @@ log = logging.getLogger("perchance.api")
 limiter = SlidingWindowLimiter(settings.rate_limit_per_minute)
 
 
+class BrowserWorkerClient:
+    """HTTP client for the remote Playwright browser worker."""
+
+    def __init__(self, base_url: str, api_key: str, timeout: float) -> None:
+        import httpx
+        self.base_url = base_url.rstrip("/")
+        self.api_key = api_key
+        self._client = httpx.AsyncClient(
+            timeout=httpx.Timeout(timeout, connect=20.0),
+            limits=httpx.Limits(max_connections=2, max_keepalive_connections=1),
+        )
+
+    async def close(self) -> None:
+        await self._client.aclose()
+
+    async def health(self) -> dict:
+        try:
+            response = await self._client.get(f"{self.base_url}/readyz")
+            response.raise_for_status()
+            return response.json()
+        except Exception as exc:
+            return {"status": "unreachable", "detail": str(exc)}
+
+    async def generate(self, *, prompt: str, style: str, shape: str) -> tuple[bytes, str]:
+        from .errors import UpstreamUnavailable, UpstreamRejected
+        try:
+            response = await self._client.post(
+                f"{self.base_url}/generate",
+                headers={"X-Worker-Key": self.api_key},
+                json={"prompt": prompt, "style": style, "shape": shape.title()},
+            )
+        except Exception as exc:
+            raise UpstreamUnavailable(f"browser worker request failed: {exc}") from exc
+        if response.status_code == 409:
+            raise UpstreamUnavailable("browser worker is busy; retry shortly")
+        if response.status_code in (400, 422):
+            raise UpstreamRejected(f"browser worker rejected request: {response.text[:800]}")
+        if response.status_code >= 400:
+            raise UpstreamUnavailable(
+                f"browser worker returned HTTP {response.status_code}: {response.text[:800]}"
+            )
+        content_type = response.headers.get("content-type", "image/jpeg")
+        if not content_type.startswith("image/") or len(response.content) < 1024:
+            raise UpstreamUnavailable("browser worker returned invalid or empty image bytes")
+        return response.content, content_type
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     client = PerchanceClient(settings)
@@ -150,53 +197,6 @@ async def validation_error_handler(request: Request, exc):
     ]
     log.warning("request validation failed method=%s path=%s errors=%s", request.method, request.url.path, safe_errors)
     return JSONResponse(status_code=422, content={"detail": errors})
-
-
-class BrowserWorkerClient:
-    """HTTP client for the remote Playwright browser worker."""
-
-    def __init__(self, base_url: str, api_key: str, timeout: float) -> None:
-        import httpx
-        self.base_url = base_url.rstrip("/")
-        self.api_key = api_key
-        self._client = httpx.AsyncClient(
-            timeout=httpx.Timeout(timeout, connect=20.0),
-            limits=httpx.Limits(max_connections=2, max_keepalive_connections=1),
-        )
-
-    async def close(self) -> None:
-        await self._client.aclose()
-
-    async def health(self) -> dict:
-        try:
-            response = await self._client.get(f"{self.base_url}/readyz")
-            response.raise_for_status()
-            return response.json()
-        except Exception as exc:
-            return {"status": "unreachable", "detail": str(exc)}
-
-    async def generate(self, *, prompt: str, style: str, shape: str) -> tuple[bytes, str]:
-        from .errors import UpstreamUnavailable, UpstreamRejected
-        try:
-            response = await self._client.post(
-                f"{self.base_url}/generate",
-                headers={"X-Worker-Key": self.api_key},
-                json={"prompt": prompt, "style": style, "shape": shape.title()},
-            )
-        except Exception as exc:
-            raise UpstreamUnavailable(f"browser worker request failed: {exc}") from exc
-        if response.status_code == 409:
-            raise UpstreamUnavailable("browser worker is busy; retry shortly")
-        if response.status_code in (400, 422):
-            raise UpstreamRejected(f"browser worker rejected request: {response.text[:800]}")
-        if response.status_code >= 400:
-            raise UpstreamUnavailable(
-                f"browser worker returned HTTP {response.status_code}: {response.text[:800]}"
-            )
-        content_type = response.headers.get("content-type", "image/jpeg")
-        if not content_type.startswith("image/") or len(response.content) < 1024:
-            raise UpstreamUnavailable("browser worker returned invalid or empty image bytes")
-        return response.content, content_type
 
 
 @app.exception_handler(PerchanceError)
