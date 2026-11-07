@@ -264,7 +264,10 @@ The browser worker serializes work and currently generates one image per request
 | `DEFAULT_SHAPE` | `square` | Shape when the request omits one. |
 | `GENERATE_DEADLINE` | `240` | Seconds before a generation is abandoned. |
 | `UPSTREAM_TIMEOUT` | `120` | Per-HTTP-call timeout. |
-| `BROWSER_WORKER_URL` | *(unset)* | Separate Playwright browser worker URL. |\n| `BROWSER_WORKER_KEY` | *(unset)* | Shared worker secret; never commit. |\n| `BROWSER_WORKER_TIMEOUT` | `360` | Browser worker timeout in seconds. |\n| `PERCHANCE_USER_KEY` | *(unset)* | Legacy backend: pin a specific upstream key instead of minting. |
+| `BROWSER_WORKER_URL` | *(unset)* | Separate Playwright browser worker URL. |
+| `BROWSER_WORKER_KEY` | *(unset)* | Shared worker secret; never commit. |
+| `BROWSER_WORKER_TIMEOUT` | `360` | Browser worker timeout in seconds. |
+| `PERCHANCE_USER_KEY` | *(unset)* | Legacy backend: pin a specific upstream key instead of minting. |
 | `PERCHANCE_BROWSER_ID` | *(unset)* | Identity paired with `PERCHANCE_USER_KEY`. |
 | `CORS_ORIGINS` | `*` | Comma-separated allowed origins. |
 | `EXPOSE_DOCS` | `true` | Serve `/docs` and `/openapi.json`. |
