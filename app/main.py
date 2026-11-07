@@ -126,6 +126,18 @@ async def guard(
         )
 
 
+@app.exception_handler(422)
+async def validation_error_handler(request: Request, exc):
+    """Log request validation failures without logging request bodies or secrets."""
+    errors = exc.errors() if hasattr(exc, "errors") else []
+    safe_errors = [
+        {"loc": error.get("loc"), "msg": error.get("msg"), "type": error.get("type")}
+        for error in errors
+    ]
+    log.warning("request validation failed method=%s path=%s errors=%s", request.method, request.url.path, safe_errors)
+    return JSONResponse(status_code=422, content={"detail": errors})
+
+
 @app.exception_handler(PerchanceError)
 async def perchance_error_handler(_: Request, exc: PerchanceError) -> JSONResponse:
     headers = {}
