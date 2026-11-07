@@ -237,6 +237,20 @@ X-API-Key: <the API_KEY value from Render → perchance-image-api → Environmen
 or `Authorization: Bearer <key>`. Do not commit the key or paste it into public logs.
 `/healthz` and `/readyz` are public.
 
+## Browser worker backend
+
+For the browser-driven Perchance workflow, deploy `browser-worker/Dockerfile` as a
+separate Render web service. Use at least 1 GB RAM (2 GB recommended). Set
+these environment variables on the API service:
+
+- `BROWSER_WORKER_URL`: URL of the browser worker.
+- `BROWSER_WORKER_KEY`: a unique shared secret matching `WORKER_API_KEY` on the worker.
+- `BROWSER_WORKER_TIMEOUT`: maximum worker response time in seconds (default 360).
+
+The API gateway routes image generation through the browser worker when both worker
+variables are set. Without them, it uses the legacy direct HTTP backend.
+The browser worker serializes work and currently generates one image per request.
+
 ## Configuration
 
 | Variable | Default | Description |
@@ -250,7 +264,7 @@ or `Authorization: Bearer <key>`. Do not commit the key or paste it into public 
 | `DEFAULT_SHAPE` | `square` | Shape when the request omits one. |
 | `GENERATE_DEADLINE` | `240` | Seconds before a generation is abandoned. |
 | `UPSTREAM_TIMEOUT` | `120` | Per-HTTP-call timeout. |
-| `PERCHANCE_USER_KEY` | *(unset)* | Pin a specific upstream key instead of minting. |
+| `BROWSER_WORKER_URL` | *(unset)* | Separate Playwright browser worker URL. |\n| `BROWSER_WORKER_KEY` | *(unset)* | Shared worker secret; never commit. |\n| `BROWSER_WORKER_TIMEOUT` | `360` | Browser worker timeout in seconds. |\n| `PERCHANCE_USER_KEY` | *(unset)* | Legacy backend: pin a specific upstream key instead of minting. |
 | `PERCHANCE_BROWSER_ID` | *(unset)* | Identity paired with `PERCHANCE_USER_KEY`. |
 | `CORS_ORIGINS` | `*` | Comma-separated allowed origins. |
 | `EXPOSE_DOCS` | `true` | Serve `/docs` and `/openapi.json`. |
