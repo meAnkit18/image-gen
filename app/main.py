@@ -36,6 +36,18 @@ limiter = SlidingWindowLimiter(settings.rate_limit_per_minute)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     client = PerchanceClient(settings)
+    worker = None
+    if settings.browser_worker_url and settings.browser_worker_key:
+        worker = BrowserWorkerClient(
+            settings.browser_worker_url,
+            settings.browser_worker_key,
+            settings.browser_worker_timeout,
+        )
+        app.state.browser_worker = worker
+        log.info("browser worker backend configured")
+    else:
+        app.state.browser_worker = None
+        log.warning("browser worker not configured; legacy direct HTTP backend is active")
     set_client(client)
     log.info(
         "startup: docs=%s mcp=%s auth=%s rate_limit=%s/min pool=%d",
@@ -53,6 +65,8 @@ async def lifespan(app: FastAPI):
             yield
     else:
         yield
+    if worker is not None:
+        await worker.close()
     log.info("shutdown")
 
 
@@ -136,6 +150,53 @@ async def validation_error_handler(request: Request, exc):
     ]
     log.warning("request validation failed method=%s path=%s errors=%s", request.method, request.url.path, safe_errors)
     return JSONResponse(status_code=422, content={"detail": errors})
+
+
+class BrowserWorkerClient:
+    """HTTP client for the remote Playwright browser worker."""
+
+    def __init__(self, base_url: str, api_key: str, timeout: float) -> None:
+        import httpx
+        self.base_url = base_url.rstrip("/")
+        self.api_key = api_key
+        self._client = httpx.AsyncClient(
+            timeout=httpx.Timeout(timeout, connect=20.0),
+            limits=httpx.Limits(max_connections=2, max_keepalive_connections=1),
+        )
+
+    async def close(self) -> None:
+        await self._client.aclose()
+
+    async def health(self) -> dict:
+        try:
+            response = await self._client.get(f"{self.base_url}/readyz")
+            response.raise_for_status()
+            return response.json()
+        except Exception as exc:
+            return {"status": "unreachable", "detail": str(exc)}
+
+    async def generate(self, *, prompt: str, style: str, shape: str) -> tuple[bytes, str]:
+        from .errors import UpstreamUnavailable, UpstreamRejected
+        try:
+            response = await self._client.post(
+                f"{self.base_url}/generate",
+                headers={"X-Worker-Key": self.api_key},
+                json={"prompt": prompt, "style": style, "shape": shape.title()},
+            )
+        except Exception as exc:
+            raise UpstreamUnavailable(f"browser worker request failed: {exc}") from exc
+        if response.status_code == 409:
+            raise UpstreamUnavailable("browser worker is busy; retry shortly")
+        if response.status_code in (400, 422):
+            raise UpstreamRejected(f"browser worker rejected request: {response.text[:800]}")
+        if response.status_code >= 400:
+            raise UpstreamUnavailable(
+                f"browser worker returned HTTP {response.status_code}: {response.text[:800]}"
+            )
+        content_type = response.headers.get("content-type", "image/jpeg")
+        if not content_type.startswith("image/") or len(response.content) < 1024:
+            raise UpstreamUnavailable("browser worker returned invalid or empty image bytes")
+        return response.content, content_type
 
 
 @app.exception_handler(PerchanceError)
@@ -393,29 +454,52 @@ async def generate(request: GenerateRequest, _: None = Depends(guard)) -> Respon
         plan.prompt[:80],
     )
 
-    tasks = [
-        client.generate_image(
+    worker = getattr(app.state, "browser_worker", None)
+    if worker is not None:
+        if request.count != 1:
+            raise PerchanceError("browser worker currently supports count=1; send one image per request")
+        image_bytes, content_type = await worker.generate(
+            prompt=plan.prompt,
+            style=plan.style or "No style",
+            shape=plan.shape or "square",
+        )
+        from .perchance import ImageResult
+        results = [ImageResult(
+            data=image_bytes,
+            content_type=content_type,
+            seed=plan.seed,
+            width=None,
+            height=None,
+            guidance_scale=plan.guidance_scale,
             prompt=plan.prompt,
             negative_prompt=plan.negative_prompt,
-            seed=plan.seed,
-            resolution=plan.resolution,
-            guidance_scale=plan.guidance_scale,
-        )
-        for _ in range(request.count)
-    ]
-    outcomes = await asyncio.gather(*tasks, return_exceptions=True)
+            elapsed_ms=int((time.monotonic() - started) * 1000),
+        )]
+        failures = []
+    else:
+        tasks = [
+            client.generate_image(
+                prompt=plan.prompt,
+                negative_prompt=plan.negative_prompt,
+                seed=plan.seed,
+                resolution=plan.resolution,
+                guidance_scale=plan.guidance_scale,
+            )
+            for _ in range(request.count)
+        ]
+        outcomes = await asyncio.gather(*tasks, return_exceptions=True)
 
-    results = [o for o in outcomes if not isinstance(o, BaseException)]
-    failures = [o for o in outcomes if isinstance(o, BaseException)]
+        results = [o for o in outcomes if not isinstance(o, BaseException)]
+        failures = [o for o in outcomes if isinstance(o, BaseException)]
 
-    if not results:
-        error = failures[0]
-        if isinstance(error, PerchanceError):
-            raise error
-        raise PerchanceError(f"generation failed: {error}") from error
+        if not results:
+            error = failures[0]
+            if isinstance(error, PerchanceError):
+                raise error
+            raise PerchanceError(f"generation failed: {error}") from error
 
-    for failure in failures:
-        log.warning("generate %s partial failure: %s", request_id, failure)
+        for failure in failures:
+            log.warning("generate %s partial failure: %s", request_id, failure)
 
     elapsed_ms = int((time.monotonic() - started) * 1000)
     return _build_response(
