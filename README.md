@@ -12,6 +12,7 @@ clients can call it as a tool.
 ```bash
 curl -X POST https://your-app.onrender.com/v1/generate \
   -H 'Content-Type: application/json' \
+  -H 'X-API-Key: YOUR_RENDER_API_KEY' \
   -d '{"prompt":"a red lighthouse on a rocky coast","style":"Watercolor","shape":"landscape"}' \
   --output lighthouse.jpg
 ```
@@ -226,17 +227,15 @@ Tools: `get_options`, `list_styles`, `service_status`, `generate_image`.
 
 ## Authentication
 
-Auth is **optional** and off unless `API_KEY` is set. When set, send either:
+Auth is **enabled on the currently deployed Render service** because Render generated an `API_KEY`.
+For requests to protected endpoints such as `POST /v1/generate`, include either:
 
 ```
-X-API-Key: <key>
-Authorization: Bearer <key>
+X-API-Key: <the API_KEY value from Render → perchance-image-api → Environment>
 ```
 
-`/healthz` and `/readyz` stay open so platform health checks and uptime monitors
-work without a key. Rate limiting is per client IP.
-
----
+or `Authorization: Bearer <key>`. Do not commit the key or paste it into public logs.
+`/healthz` and `/readyz` are public.
 
 ## Configuration
 
