@@ -268,3 +268,18 @@ def test_mcp_endpoint_has_no_redirect(client):
     )
     assert response.status_code == 200
     assert response.json()["result"]["serverInfo"]["name"] == "perchance-image-generator"
+
+def test_generate_uses_configured_browser_worker(client):
+    class FakeWorker:
+        async def generate(self, **kwargs):
+            assert kwargs["prompt"] == "a lighthouse"
+            assert kwargs["style"] == "Watercolor"
+            return TINY_JPEG + b" " * 2048, "image/jpeg"
+
+    client.app.state.browser_worker = FakeWorker()
+    response = client.post("/v1/generate", json={"prompt": "a lighthouse", "style": "Watercolor"})
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "image/jpeg"
+    assert len(response.content) > 1024
+    client.app.state.browser_worker = None
+

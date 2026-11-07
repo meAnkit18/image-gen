@@ -58,6 +58,11 @@ class Settings:
     """Runtime settings."""
 
     # --- upstream -------------------------------------------------------
+    # Remote browser worker (preferred when configured).
+    browser_worker_url: str | None = _str("BROWSER_WORKER_URL")
+    browser_worker_key: str | None = _str("BROWSER_WORKER_KEY")
+    browser_worker_timeout: float = _float("BROWSER_WORKER_TIMEOUT", 360.0)
+
     user_key: str | None = _str("PERCHANCE_USER_KEY")
     browser_id: str | None = _str("PERCHANCE_BROWSER_ID")
     impersonate: str = _str("PERCHANCE_IMPERSONATE", "firefox") or "firefox"
