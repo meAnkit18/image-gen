@@ -23,7 +23,7 @@ log = logging.getLogger("perchance.worker")
 
 API_KEY = os.environ.get("WORKER_API_KEY", "")
 PORT = int(os.environ.get("PORT", "8080"))
-GENERATION_TIMEOUT = int(os.environ.get("GENERATION_TIMEOUT", "300"))
+GENERATION_TIMEOUT = int(os.environ.get("GENERATION_TIMEOUT", "360"))
 MAX_PROMPT = int(os.environ.get("MAX_PROMPT_CHARS", "2500"))
 SITE = "https://perchance.org/ai-text-to-image-generator"
 UA = "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"
@@ -114,16 +114,79 @@ async def readyz():
 async def gallery_sources() -> set[str]:
     found: set[str] = set()
     for frame in page.frames:
-        if "image-generation.perchance.org/embed" not in frame.url:
+        if "image-generation.perchance.org" not in frame.url:
             continue
         try:
             sources = await frame.evaluate(
-                "() => Array.from(document.querySelectorAll('img')).map(i => i.src)"
+                "() => Array.from(document.images).map(i => i.currentSrc || i.src).filter(Boolean)"
             )
             found.update(sources)
         except Exception:
             continue
     return found
+
+
+async def gallery_images() -> list[dict[str, Any]]:
+    found: list[dict[str, Any]] = []
+    for frame in page.frames:
+        if "image-generation.perchance.org" not in frame.url:
+            continue
+        try:
+            images = await frame.evaluate(
+                """() => Array.from(document.images).map(i => ({
+                    src: i.currentSrc || i.src || "",
+                    width: i.naturalWidth || i.width || 0,
+                    height: i.naturalHeight || i.height || 0
+                })).filter(i => i.src && i.width >= 256 && i.height >= 256)"""
+            )
+            for item in images:
+                item["frame_url"] = frame.url
+                found.append(item)
+        except Exception as exc:
+            log.debug("could not inspect gallery frame %s: %s", frame.url, exc)
+    return found
+
+
+async def fetch_image(src: str) -> tuple[bytes, str]:
+    if src.startswith("data:image/"):
+        header, encoded = src.split(",", 1)
+        mime = header[5:].split(";", 1)[0] or "image/png"
+        if ";base64" in header:
+            return base64.b64decode(encoded, validate=True), mime
+        from urllib.parse import unquote_to_bytes
+        return unquote_to_bytes(encoded), mime
+
+    if src.startswith("blob:"):
+        for frame in page.frames:
+            if "image-generation.perchance.org" not in frame.url:
+                continue
+            try:
+                result = await frame.evaluate(
+                    """async (url) => {
+                        const r = await fetch(url);
+                        if (!r.ok) throw new Error('blob fetch HTTP ' + r.status);
+                        const b = await r.blob();
+                        const a = new Uint8Array(await b.arrayBuffer());
+                        let binary = '';
+                        for (let i = 0; i < a.length; i += 0x8000)
+                          binary += String.fromCharCode(...a.subarray(i, i + 0x8000));
+                        return { data: btoa(binary), type: b.type || 'image/png' };
+                    }""",
+                    src,
+                )
+                return base64.b64decode(result["data"]), result["type"]
+            except Exception:
+                continue
+        raise RuntimeError("could not fetch generated blob image")
+
+    response = await context.request.get(src, timeout=45000)
+    if not response.ok:
+        raise RuntimeError(f"generated image download returned HTTP {response.status}")
+    mime = response.headers.get("content-type", "image/png").split(";", 1)[0].strip()
+    raw = await response.body()
+    if not mime.startswith("image/"):
+        raise RuntimeError(f"generated URL returned non-image content type: {mime}")
+    return raw, mime
 
 
 async def select_controls(frame, style: str, shape: str) -> list[str]:
@@ -173,25 +236,37 @@ async def set_prompt(frame, prompt: str) -> None:
     )
 
 
-async def capture_new_image(baseline: set[str]) -> str | None:
+async def capture_new_image(baseline: set[str]) -> tuple[bytes, str, str] | None:
     deadline = time.monotonic() + GENERATION_TIMEOUT
+    last_report = 0.0
     while time.monotonic() < deadline:
         await page.wait_for_timeout(2000)
-        for frame in page.frames:
-            if "image-generation.perchance.org/embed" not in frame.url:
-                continue
+        candidates = await gallery_images()
+        fresh = [
+            item for item in candidates
+            if item["src"] not in baseline
+            and item["src"].startswith(("data:image/", "https://", "http://", "blob:"))
+        ]
+        fresh.sort(key=lambda item: item["width"] * item["height"], reverse=True)
+        for item in fresh:
             try:
-                imgs = await frame.evaluate(
-                    """() => Array.from(document.querySelectorAll('img')).map(i => ({
-                      src:i.src, width:i.naturalWidth
-                    }))"""
-                )
-            except Exception:
-                continue
-            for img in imgs:
-                src = img.get("src", "")
-                if src.startswith("data:image/") and img.get("width", 0) > 200 and src not in baseline:
-                    return src
+                raw, mime = await fetch_image(item["src"])
+                if len(raw) >= 1024:
+                    log.info(
+                        "captured generated image: %sx%s bytes=%s type=%s source=%s",
+                        item["width"], item["height"], len(raw), mime, item["src"][:180],
+                    )
+                    return raw, mime, item["src"]
+                log.warning("ignoring small generated image candidate (%s bytes)", len(raw))
+            except Exception as exc:
+                log.warning("could not download fresh image candidate %s: %s", item["src"][:160], exc)
+        now = time.monotonic()
+        if now - last_report >= 30:
+            last_report = now
+            log.info(
+                "still waiting for Perchance image: frames=%s gallery_images=%s fresh_candidates=%s",
+                len(page.frames), len(candidates), len(fresh),
+            )
     return None
 
 
@@ -222,19 +297,27 @@ async def generate(body: GenerateBody, x_worker_key: str | None = Header(None, a
             log.info("generation controls selected: %s", controls)
             await set_prompt(gen, body.prompt)
             baseline = await gallery_sources()
+            before_images = await gallery_images()
+            log.info(
+                "starting Perchance generation: baseline_images=%s frame_urls=%s",
+                len(before_images), [f.url for f in page.frames],
+            )
             button = gen.locator('button:has-text("generate")').first
             await button.click(timeout=15000)
             log.info("Perchance generate button clicked; waiting up to %ss", GENERATION_TIMEOUT)
-            data_url = await capture_new_image(baseline)
-            if not data_url:
-                log.error("Perchance produced no new image within %ss", GENERATION_TIMEOUT)
+            captured = await capture_new_image(baseline)
+            if not captured:
+                log.error(
+                    "Perchance produced no new image within %ss; frames=%s",
+                    GENERATION_TIMEOUT, [f.url for f in page.frames],
+                )
                 raise HTTPException(504, "Perchance did not produce a new image before timeout")
-            raw = base64.b64decode(data_url.split(",", 1)[1], validate=True)
+            raw, mime, source = captured
             if len(raw) < 1024:
                 raise HTTPException(502, "Perchance returned an unexpectedly small image")
             return Response(
                 content=raw,
-                media_type="image/jpeg",
+                media_type=mime,
                 headers={
                     "X-Image-Bytes": str(len(raw)),
                     "X-Browser-Controls": ",".join(controls),
