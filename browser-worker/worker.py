@@ -66,6 +66,11 @@ async def lifespan(app: FastAPI):
     page = await context.new_page()
     await page.goto(SITE, wait_until="domcontentloaded", timeout=90000)
     await page.wait_for_timeout(6000)
+    if not any(
+        ".perchance.org/ai-text-to-image" in frame.url and "image-generation" not in frame.url
+        for frame in page.frames
+    ):
+        raise RuntimeError("Perchance generator frame did not load during worker startup")
     yield
     await browser.close()
     await playwright.stop()
@@ -88,9 +93,18 @@ async def healthz():
 
 @app.get("/readyz")
 async def readyz():
+    generator_ready = bool(
+        page and any(
+            ".perchance.org/ai-text-to-image" in frame.url
+            and "image-generation" not in frame.url
+            for frame in page.frames
+        )
+    )
+    healthy = bool(browser and browser.is_connected() and generator_ready)
     return {
-        "status": "ready" if page and page.url.startswith("https://perchance.org/") else "degraded",
-        "url": page.url if page else None,
+        "status": "ready" if healthy else "degraded",
+        "browser": bool(browser and browser.is_connected()),
+        "generator_frame": generator_ready,
     }
 
 
@@ -179,7 +193,7 @@ async def capture_new_image(baseline: set[str]) -> str | None:
 
 
 @app.post("/generate")
-async def generate(body: GenerateBody, x_worker_key: str | None = Header(None)):
+async def generate(body: GenerateBody, x_worker_key: str | None = Header(None, alias="X-Worker-Key")):
     auth(x_worker_key)
     if generation_lock.locked():
         raise HTTPException(409, "a generation is already in progress; retry shortly")
