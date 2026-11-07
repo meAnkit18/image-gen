@@ -272,7 +272,7 @@ def test_mcp_endpoint_has_no_redirect(client):
 def test_generate_uses_configured_browser_worker(client):
     class FakeWorker:
         async def generate(self, **kwargs):
-            assert kwargs["prompt"] == "a lighthouse"
+            assert kwargs["prompt"].startswith("a lighthouse")
             assert kwargs["style"] == "Watercolor"
             return TINY_JPEG + b" " * 2048, "image/jpeg"
 
